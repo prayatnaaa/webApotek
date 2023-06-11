@@ -1,13 +1,9 @@
-const User = require("../models/User");
-
 
 module.exports = {
-    // read data user
+    // // read data user
     viewLogin: async (req, res) => {
         try {
-          const user = await User.find();
             
-          const { nama, password, umur, email, no_telp, alamat, userType } = req.body;
         //   message and status
           const alertMessage = req.flash("alertMessage");
           const alertStatus = req.flash("alertStatus");
@@ -28,24 +24,22 @@ module.exports = {
         try {
           const { username, password } = req.body;
           
-          // cari data berdasarkan id
-          const user = await User.findOne({ nama: username });
           
           // update data dari request body
-          if (user.nama === username && user.password === password && user.userType === "admin") {
+          if (username === "admin" && password === "password" ) {
             req.session.loggedIn = true;
-            req.session.username = user.nama;
+            req.session.username = username;
             res.redirect("/user");
            
           }else{
             // gagal message
-          req.flash("alertMessage", "Login gagal");
+          req.flash("alertMessage", "Login Failed");
           req.flash("alertStatus", "danger");
           res.redirect("/");
           }
         } catch (error) {
           // erro message
-          req.flash("alertMessage", "Username tidak ada");
+          req.flash("alertMessage", "username atau password salah");
           req.flash("alertStatus", "danger");
           res.redirect("/");
         }

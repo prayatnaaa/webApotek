@@ -5,14 +5,18 @@ const apotekScheme = new mongoose.Schema({
         type : String,
         required : true,
     },
-    jumlah: {
+    harga: {
         type : Number,
         required : true,
     },
-    alamat: {
+    deskripsi: {
         type : String,
         required: true,
     },
+    jenisObat: {
+        type : String,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model("Apotek", apotekScheme);

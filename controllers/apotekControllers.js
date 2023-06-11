@@ -21,7 +21,7 @@ module.exports = {
       res.render("index", {
         apotek,
         alert,
-        title: "CRUD", // Untuk title dari aplikasi kita, saya manamakannya dengan CRUD
+        title: "OBAT", // Untuk title dari aplikasi kita, saya manamakannya dengan CRUD
       });
     } catch (error) {
       // Jika error maka akan meredirect ke route mahasiswa(routenya akan kita buat setelah selesai dengan mahasiswaController)
@@ -35,9 +35,9 @@ module.exports = {
     // memberi validasi untuk inputan yang kosong
     try {
       // Membuat contanta untuk nama, nim, jurusan, dan alamat yang diambil dari body/yang diketikan di form
-      const { no, nama, jumlah, alamat } = req.body;
+      const { id, nama, harga, deskripsi, jenisObat } = req.body;
       // lalu mengembalikan fungsi dan membuat data dari scheme/model Mahasiswa
-      await Apotek.create({ no, nama, jumlah, alamat });
+      await Apotek.create({ id, nama, harga, deskripsi, jenisObat });
       // ketika create data berhasil memberikan notifikasi
       req.flash("alertMessage", "Success add data Obat");
       req.flash("alertStatus", "success");
@@ -55,17 +55,17 @@ module.exports = {
   // Membuat update data untuk obat
   editObat: async (req, res) => {
     try {
-      console.log("test============");
       // Membuat variabel yang menerima id, dan nama yang didapat dari req body atau yang di inputkan di form input
-      const { id, nama, jumlah, alamat } = req.body;
+      const { id, nama, harga, deskripsi, jenisObat } = req.body;
       /*  mencari variabel yang dideklarasikan diatas dan mengecek _id yang ada di req body yang dikirim
    _id didapat database dan id isinya dari inputan user */
       const apotek = await Apotek.findOne({ _id: id });
       /* mahasiswa diambil dari fungsi diatas dan titik(.) nama diambil dari database = nama yang didapat dari req body
    yang tentu dikirimkan dari inputan user */
       apotek.nama = nama;
-      apotek.jumlah = jumlah;
-      apotek.alamat = alamat;
+      apotek.harga = harga;
+      apotek.deskripsi = deskripsi;
+      apotek.jenisObat = jenisObat;
       // Menyimpan datanya ke database
       await apotek.save();
       // ketika edit data berhasill memberikan notifikasi/alert

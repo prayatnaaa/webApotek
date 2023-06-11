@@ -1,0 +1,75 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add-modal">
+            Add
+          </button>
+        </div>
+        <div class="col-md-6">
+          <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search by name">
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>NAMA</th>
+              <th>ALAMAT</th>
+              <th>KONTAK</th>
+              <th>EMAIL</th>
+              <th>JENIS OBAT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i < mitra.length; i++){ %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= mitra[i].nama %></td>
+              <td><%= mitra[i].alamat %></td>
+              <td><%= mitra[i].kontak %></td>
+              <td><%= mitra[i].email %></td>
+              <td><%= mitra[i].obatType %></td>
+              <td class="text-center">
+                <form action="/mitra/<%= mitra[i].id %>?_method=DELETE" method="POST">
+                  <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update" data-id="<%= mitra[i].id %>"
+                    data-nama="<%= mitra[i].nama %>" data-alamat="<%= mitra[i].alamat %>" data-kontak="<%= mitra[i].kontak %>"
+                    data-email="<%= mitra[i].email %>" data-obatType="<%= mitra[i].obatType %>">Edit</a>
+                  <button type="submit" class="btn btn-outline-danger btn-sm"
+                    onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Ambil referensi elemen input dan tabel
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.querySelector('#dataTable tbody');
+  
+    // Tambahkan event listener saat input pencarian berubah
+    searchInput.addEventListener('input', function() {
+      const searchValue = this.value.toLowerCase();
+  
+      // Lakukan filter pada setiap baris tabel
+      Array.from(tableBody.rows).forEach(function(row) {
+        const name = row.cells[1].textContent.toLowerCase();
+  
+        // Periksa apakah nama obat mengandung kata kunci pencarian
+        if (name.includes(searchValue)) {
+          row.style.display = ''; // Tampilkan baris jika cocok
+        } else {
+          row.style.display = 'none'; // Sembunyikan baris jika tidak cocok
+        }
+      });
+    });
+  </script>
+  

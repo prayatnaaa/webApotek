@@ -15,6 +15,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const apotekRouter = require('./routes/apotek');
+const userRouter = require('./routes/user');
+const customerRouter = require('./routes/customer');
+const mitraRouter = require('./routes/mitra');
+const loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -40,9 +44,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+const checkLoggedIn = (req, res, next) => {
+  if (req.session.loggedIn) {
+    // Jika pengguna sudah login, lanjutkan ke rute berikutnya
+    next();
+  } else {
+    // Jika pengguna belum login, redirect ke halaman login
+    res.redirect("/");
+  }
+};
+
+app.use('/', loginRouter);
 app.use('/users', usersRouter);
 app.use('/apotek', apotekRouter);
+app.use('/user', userRouter);
+app.use('/customer', customerRouter);
+app.use('/mitra', mitraRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

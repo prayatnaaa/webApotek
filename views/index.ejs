@@ -37,7 +37,8 @@
         // membuat variabel untuk mengambil data-id, data-name, dstnya yang sudah dibuat di file table.ejs di bagian tag a edit
         let id = $(this).data("id");
         let nama = $(this).data("nama");
-        let jumlah = $(this).data("jumlah");
+        let harga = $(this).data("harga");
+        let deskripsi = $(this).data("deskripsi");
         let alamat = $(this).data("alamat");
         /*
          * memanggil id edit-modal yang ada di file edit_modal.ejs
@@ -48,7 +49,8 @@
            dan valuenya mengambil dari setiap let yang dideklarasikan di atas */
         $(".id").val(id);
         $(".nama").val(nama);
-        $(".jumlah").val(jumlah);
+        $(".harga").val(harga);
+        $(".deskripsi").val(deskripsi);
         $(".alamat").val(alamat);
       });
     </script>

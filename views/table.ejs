@@ -1,65 +1,67 @@
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <!-- Button trigger modal -->
-      <button
-        type="button"
-        class="btn btn-outline-primary btn-sm"
-        data-toggle="modal"
-        data-target="#add-modal"
-      >
-        Add
-      </button>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table
-          class="table table-bordered"
-          id="dataTable"
-          width="100%"
-          cellspacing="0"
-        >
-          <thead>
-            <tr>
-              <th>NO</th>
-              <th>NAMA</th>
-              <th>JUMLAH</th>
-              <th>ALAMAT</th>
-            </tr>
-          </thead>
-    <tbody>
-            <% for(let i = 0; i < apotek.length; i++){ %>
-            <tr>
-              <td><%= i +1 %></td>
-              <td><%= apotek[i].nama %></td>
-              <td><%= apotek[i].jumlah %></td>
-              <td><%= apotek[i].alamat %></td>
-              <td class="text-center">
-                <form
-                  action="/apotek/<%= apotek[i].id %>?_method=DELETE" 
-                  method="POST"
-                >
-                  <a 
-                  href="javascript:void()"
-                  class="btn btn-outline-warning btn-sm button-update"
-                  data-id="<%= apotek[i].id %>"
-                  data-nama="<%= apotek[i].nama %>"
-                  data-jumlah="<%= apotek[i].jumlah %>"
-                  data-alamat="<%= apotek[i].alamat %>"
-                    >Edit</a
-                  >
-                <button 
-                type="submit" 
-                class="btn btn-outline-danger btn-sm"
-                onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');"
-                >
-                  Delete
-                </button>
-              </form>
-              </td>
-            </tr>
-            <% } %>
-          </tbody>
-        </table>
+  <div class="card-header py-3">
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add-modal">
+          Add
+        </button>
+      </div>
+      <div class="col-md-6">
+        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search by name">
       </div>
     </div>
   </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>NAMA</th>
+            <th>HARGA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < apotek.length; i++){ %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= apotek[i].nama %></td>
+            <td><%= apotek[i].harga %></td>
+            <td class="text-center">
+              <form action="/apotek/<%= apotek[i].id %>?_method=DELETE" method="POST">
+                <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update" data-id="<%= apotek[i].id %>"
+                  data-nama="<%= apotek[i].nama %>" data-jumlah="<%= apotek[i].jumlah %>" data-alamat="<%= apotek[i].alamat %>">Edit</a>
+                <button type="submit" class="btn btn-outline-danger btn-sm"
+                  onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Ambil referensi elemen input dan tabel
+  const searchInput = document.getElementById('searchInput');
+  const tableBody = document.querySelector('#dataTable tbody');
+
+  // Tambahkan event listener saat input pencarian berubah
+  searchInput.addEventListener('input', function() {
+    const searchValue = this.value.toLowerCase();
+
+    // Lakukan filter pada setiap baris tabel
+    Array.from(tableBody.rows).forEach(function(row) {
+      const name = row.cells[1].textContent.toLowerCase();
+
+      // Periksa apakah nama obat mengandung kata kunci pencarian
+      if (name.includes(searchValue)) {
+        row.style.display = ''; // Tampilkan baris jika cocok
+      } else {
+        row.style.display = 'none'; // Sembunyikan baris jika tidak cocok
+      }
+    });
+  });
+</script>
