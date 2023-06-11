@@ -6,6 +6,9 @@ const mitraControllers = require("../controllers/mitraControllers");
 
 // endpoint mahasiswa
 router.get("/", mitraControllers.viewMitra); // Untuk view
+router.get("/", mitraControllers.viewMitraByAlamat);
+router.get("/", mitraControllers.viewMitraByJenisObat);
+router.get("/", mitraControllers.viewMitraByNo);
 router.post("/", mitraControllers.addMitra);
 router.put("/", mitraControllers.editMitra);
 router.delete("/:id", mitraControllers.deleteMitra);
