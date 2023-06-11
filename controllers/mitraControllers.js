@@ -59,7 +59,7 @@ module.exports = {
       const { id, nama, alamat, kontak, email, obatType } = req.body;
       /*  mencari variabel yang dideklarasikan diatas dan mengecek _id yang ada di req body yang dikirim
    _id didapat database dan id isinya dari inputan user */
-      const apotek = await Mitra.findOne({ _id: id });
+      const mitra = await Mitra.findOne({ _id: id });
       /* mahasiswa diambil dari fungsi diatas dan titik(.) nama diambil dari database = nama yang didapat dari req body
    yang tentu dikirimkan dari inputan user */
       mitra.nama = nama;
