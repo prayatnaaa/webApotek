@@ -5,9 +5,29 @@
           <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add-modal">
             Add
           </button>
-        </div>
-        <div class="col-md-6">
-          <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search by name">
+
+          <nav class="navbar d-sm-inline-block navbar-light bg-light">
+            <form class="form-inline" method="GET">
+              <input type="text" class="form-control bg-light border-0 small" id="searchInput" name="search" placeholder="Cari Mitra" aria-label="Search"
+                aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                  <div class="dropdown-menu animated--grow-in">
+                    <a class="dropdown-item" id="namaLink" href="#">By Nama</a>
+                    <a class="dropdown-item" id="kontakLink" href="#">By Kontak</a>
+                    <a class="dropdown-item" id="alamatLink" href="#">By No Alamat</a>
+                    <a class="dropdown-item" id="obatTypeLink" href="#">By Obat Type</a>
+                  </div>
+                </div>
+              </div>
+              <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+            </form>
+          </nav>
+      
         </div>
       </div>
     </div>
@@ -22,6 +42,7 @@
               <th>KONTAK</th>
               <th>EMAIL</th>
               <th>JENIS OBAT</th>
+              <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +60,7 @@
                     data-nama="<%= mitra[i].nama %>" data-alamat="<%= mitra[i].alamat %>" data-kontak="<%= mitra[i].kontak %>"
                     data-email="<%= mitra[i].email %>" data-obatType="<%= mitra[i].obatType %>">Edit</a>
                   <button type="submit" class="btn btn-outline-danger btn-sm"
-                    onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Delete</button>
+                    onclick="return confirm('Anda yakin ingin menghapus data ini?');">Delete</button>
                 </form>
               </td>
             </tr>
