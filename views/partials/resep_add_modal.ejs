@@ -1,0 +1,101 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="add-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Resep Obat</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/resep" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Nama Pasien</label>
+            <input
+              type="text"
+              class="form-control"
+              id="namaPasien"
+              name="namaPasien"
+              placeholder="Masukan Nama Pasien"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Nama Dokter</label>
+            <input
+              type="text"
+              class="form-control"
+              id="namaDokter"
+              name="namaDokter"
+              placeholder="Masukan Nama Dokter"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Kontak Dokter</label>
+            <input
+              type="number"
+              class="form-control"
+              id="kontakDokter"
+              name="kontakDokter"
+              placeholder="Masukan Kontak Dokter"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Deskripsi</label>
+            <input
+              type="text"
+              class="form-control"
+              id="deskripsi"
+              name="deskripsi"
+              placeholder="Masukan Deskripsi"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Laporan Dokter</label>
+            <input
+              type="text"
+              class="form-control"
+              id="laporanDokter"
+              name="laporanDokter"
+              placeholder="Masukan Laporan Dokter"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Dosis</label>
+            <input
+              type="number"
+              class="form-control"
+              id="dosis"
+              name="dosis"
+              placeholder="Masukan Dosis"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-success">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

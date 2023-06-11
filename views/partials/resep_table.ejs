@@ -1,0 +1,101 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add-modal">
+            Add
+          </button>
+
+          <nav class="navbar d-sm-inline-block navbar-light bg-light">
+            <form class="form-inline" method="GET">
+              <input type="text" class="form-control bg-light border-0 small" id="searchInput" name="search" placeholder="Cari Resep" aria-label="Search"
+                aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                  <!-- <div class="dropdown-menu animated--grow-in">
+                    <a class="dropdown-item" id="namaLink" href="#">By Nama</a>
+                    <a class="dropdown-item" id="kontakLink" href="#">By Kontak</a>
+                    <a class="dropdown-item" id="alamatLink" href="#">By No Alamat</a>
+                    <a class="dropdown-item" id="obatTypeLink" href="#">By Obat Type</a>
+                  </div> -->
+                </div>
+              </div>
+              <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+            </form>
+          </nav>
+      
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>NAMA PASIEN</th>
+              <th>NAMA DOKTER</th>
+              <th>KONTAK DOKTER</th>
+              <th>DETAIL</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i < resep.length; i++){ %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= resep[i].namaPasien%></td>
+              <td><%= resep[i].namaDokter %></td>
+              <td><%= resep[i].kontakDokter %></td>
+              
+              <td class="text-center">
+                <form action="/resep/id/<%= resep[i].id %>?_method=GET" method="POST">
+                  <button type="submit" class="btn btn btn-primary btn-sm" >Detail Resep</button>
+                </form>
+              </td>
+              
+              <td class="text-center">
+                <form action="/resep/<%= resep[i].id %>?_method=DELETE" method="POST">
+                  <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update" data-id="<%= resep[i].id %>"
+                    data-namaPasien="<%= resep[i].namaPasien %>" data-namaDokter="<%= resep[i].namaDokter%>" 
+                    data-kontakDokter="<%= resep[i].kontakDokter%>"
+                   >Edit</a>
+                  <button type="submit" class="btn btn-outline-danger btn-sm"
+                    onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Ambil referensi elemen input dan tabel
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.querySelector('#dataTable tbody');
+  
+    // Tambahkan event listener saat input pencarian berubah
+    searchInput.addEventListener('input', function() {
+      const searchValue = this.value.toLowerCase();
+  
+      // Lakukan filter pada setiap baris tabel
+      Array.from(tableBody.rows).forEach(function(row) {
+        const name = row.cells[1].textContent.toLowerCase();
+  
+        // Periksa apakah nama obat mengandung kata kunci pencarian
+        if (name.includes(searchValue)) {
+          row.style.display = ''; // Tampilkan baris jika cocok
+        } else {
+          row.style.display = 'none'; // Sembunyikan baris jika tidak cocok
+        }
+      });
+    });
+  </script>
+  
