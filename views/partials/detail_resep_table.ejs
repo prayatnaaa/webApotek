@@ -1,0 +1,47 @@
+<!-- DataTales Example -->
+
+<div class="card shadow mb-4 ">
+    <div class="card-header navbar py-3 justify-content-between">
+      <!-- Button trigger modal -->
+      <nav class="navbar d-sm-inline-block navbar-light bg-light">
+        <h4 class="text-left" style="margin-bottom: 0;">Detail Resep</h4>
+      </nav>
+  
+  
+    </div>
+    <div class="card-body">
+        <div> 
+            <table width="100%" cellspacing="0">
+            <tr>
+                <td width="12%">Nama Pasien</td>
+                <td width="3%">:</td>
+                <td width="90%" class="text-left"><%= resep.namaPasien %></td>
+            </tr>
+            <tr>
+                <td>Nama Dokter</td>
+                <td>:</td>
+                <td><%= resep.namaDokter %></td>
+            </tr>
+            <tr>
+                <td>Kontak Dokter</td>
+                <td>:</td>
+                <td><%= resep.kontakDokter %></td>
+            </tr>
+            <tr>
+                <td>Dosis</td>
+                <td>:</td>
+                <td><%= resep.dosis %></td>
+            </tr>
+            <tr><td><td><br></td></tr>
+            <tr>
+                <td>DESKRIPSI</td>
+            </tr>
+            <tr>
+                <td colspan="3"><%= resep.deskripsi%></td>
+            </tr>
+            <tr><td><td><br></td></tr>
+            </table>
+            <br>
+        </div>
+    </div>
+</div>
