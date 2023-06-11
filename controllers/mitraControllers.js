@@ -28,6 +28,72 @@ module.exports = {
       res.redirect("/mitra");
     }
   },
+  viewMitraByAlamat: async (req, res) => {
+    req.session.loggedIn = true;
+    try {
+      const mitra = await Mitra.find({alamat:req.params.alamat});
+    //   message and status
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+
+    //   render componen
+    
+      res.render("mitra_index", {
+        mitra,
+        alert,
+        title: "Mitra Table",
+        heading: "Tabel Mitra"
+      });
+    } catch (error) {
+      // back to user jika error
+      res.redirect("/mitra");
+    }
+  },
+  viewMitraByNo: async (req, res) => {
+    req.session.loggedIn = true;
+    try {
+      const mitra = await Mitra.find({kontak:req.params.kontak});
+    //   message and status
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+
+    //   render componen
+    
+      res.render("mitra_index", {
+        mitra,
+        alert,
+        title: "Mitra Table",
+        heading: "Tabel Mitra"
+      });
+    } catch (error) {
+      // back to user jika error
+      res.redirect("/mitra");
+    }
+  },
+  viewMitraByJenisObat: async (req, res) => {
+    req.session.loggedIn = true;
+    try {
+      const mitra = await Mitra.find({obatType:req.params.obatType});
+    //   message and status
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+
+    //   render componen
+    
+      res.render("mitra_index", {
+        mitra,
+        alert,
+        title: "Mitra Table",
+        heading: "Tabel Mitra"
+      });
+    } catch (error) {
+      // back to user jika error
+      res.redirect("/mitra");
+    }
+  },
  
   // Membuat create data untuk obat
   // Membuat fungsi untuk menambahkan data di form dan menggunakan async await

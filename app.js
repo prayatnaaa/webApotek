@@ -19,6 +19,7 @@ const userRouter = require('./routes/user');
 const customerRouter = require('./routes/customer');
 const mitraRouter = require('./routes/mitra');
 const loginRouter = require('./routes/login');
+const resepRouter = require('./routes/resep');
 var app = express();
 
 // view engine setup
@@ -60,6 +61,7 @@ app.use('/apotek', apotekRouter);
 app.use('/user', userRouter);
 app.use('/customer', customerRouter);
 app.use('/mitra', mitraRouter);
+app.use('/resep', resepRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
