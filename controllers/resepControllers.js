@@ -143,7 +143,7 @@ module.exports = {
   editResep: async (req, res) => {
     try {
       // Membuat variabel yang menerima id, dan nama yang didapat dari req body atau yang di inputkan di form input
-      const { namaPasien, namaDokter, kontakDokter, deskripsi, laporanDokter, dosis } = req.body;
+      const { id, namaPasien, namaDokter, kontakDokter, deskripsi, laporanDokter, dosis } = req.body;
       /*  mencari variabel yang dideklarasikan diatas dan mengecek _id yang ada di req body yang dikirim
    _id didapat database dan id isinya dari inputan user */
       const resep = await Resep.findOne({ _id: id });

@@ -186,9 +186,12 @@
             $("#dataTable").on("click", ".button-update", function () {
                 // membuat variabel untuk mengambil data-id, data-name, dstnya yang sudah dibuat di file table.ejs di bagian tag a edit
                 let id = $(this).data("id");
-                let namaPasien = $(this).data("namaPasien");
-                let namaDokter = $(this).data("namaDokter");
-                let kontakDokter = $(this).data("kontakDokter");
+                let namaPasien = $(this).data("nama_pasien");
+                let namaDokter = $(this).data("nama_dokter");
+                let kontakDokter = $(this).data("kontak_dokter");
+                let deskripsi = $(this).data("deskripsi");
+                let laporanDokter = $(this).data("laporan_dokter");
+                let dosis = $(this).data("dosis");
                 /*
                  * memanggil id edit-modal yang ada di file edit_modal.ejs
                  * dan membuat fungsi dari method
@@ -200,6 +203,9 @@
                 $(".namaPasien").val(namaPasien);
                 $(".namaDokter").val(namaDokter);
                 $(".kontakDokter").val(kontakDokter);
+                $(".deskripsi").val(deskripsi);
+                $(".laporanDokter").val(laporanDokter);
+                $(".dosis").val(dosis);
             });
         </script>
 
@@ -208,8 +214,11 @@
             var namaPasienLink = document.getElementById('namaPasienLink');
             var namaDokterLink = document.getElementById('namaDokterLink');
             var kontakDokterLink = document.getElementById('kontakDokterLink');
+            var deskripsiLink= document.getElementById('deskripsiLink');
+            var laporanDokterLink= document.getElementById('laporanDokterLink');
+            var dosisLink= document.getElementById('dosis');
 
-            namaLink.addEventListener('click', function (event) {
+            namaPasienLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Mencegah aksi default hyperlink
 
                 var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
@@ -219,7 +228,7 @@
                     window.location.href = url;
                 }
             });
-            alamatLink.addEventListener('click', function (event) {
+            namaDokterLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Mencegah aksi default hyperlink
 
                 var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
@@ -229,12 +238,45 @@
                     window.location.href = url;
                 }
             });
-            kontakLink.addEventListener('click', function (event) {
+            kontakDokterLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Mencegah aksi default hyperlink
 
                 var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
                 if (searchValue.trim() !== '') { // cek null
                     var url = "/resep/kontakDokter/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    // Redirect ke URL yang ditentukan
+                    window.location.href = url;
+                }
+            });
+
+            deskripsiLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default hyperlink
+
+                var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
+                if (searchValue.trim() !== '') { // cek null
+                    var url = "/resep/deskripsi/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    // Redirect ke URL yang ditentukan
+                    window.location.href = url;
+                }
+            });
+
+            laporanDokterLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default hyperlink
+
+                var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
+                if (searchValue.trim() !== '') { // cek null
+                    var url = "/resep/laporanDokter/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    // Redirect ke URL yang ditentukan
+                    window.location.href = url;
+                }
+            });
+
+            dosisLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default hyperlink
+
+                var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
+                if (searchValue.trim() !== '') { // cek null
+                    var url = "/resep/dosis/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
                     // Redirect ke URL yang ditentukan
                     window.location.href = url;
                 }

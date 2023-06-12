@@ -86,8 +86,7 @@ module.exports = {
       res.render("mitra_index", {
         mitra,
         alert,
-        title: "Mitra Table",
-        heading: "Tabel Mitra"
+        title: "Tabel Mitra",
       });
     } catch (error) {
       // back to user jika error
@@ -126,6 +125,7 @@ module.exports = {
       /*  mencari variabel yang dideklarasikan diatas dan mengecek _id yang ada di req body yang dikirim
    _id didapat database dan id isinya dari inputan user */
       const mitra = await Mitra.findOne({ _id: id });
+
       /* mahasiswa diambil dari fungsi diatas dan titik(.) nama diambil dari database = nama yang didapat dari req body
    yang tentu dikirimkan dari inputan user */
       mitra.nama = nama;

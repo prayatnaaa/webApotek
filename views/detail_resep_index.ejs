@@ -186,9 +186,12 @@
             $("#dataTable").on("click", ".button-update", function () {
                 // membuat variabel untuk mengambil data-id, data-name, dstnya yang sudah dibuat di file table.ejs di bagian tag a edit
                 let id = $(this).data("id");
-                let namaPasien = $(this).data("namaPasien");
-                let namaDokter = $(this).data("namaDokter");
-                let kontakDokter = $(this).data("kontakDokter");
+                let namaPasien = $(this).data("namapasien");
+                let namaDokter = $(this).data("namadokter");
+                let kontakDokter = $(this).data("kontakdokter");
+                let deskripsi= $(this).data("deskripsi");
+                let laporanDokter = $(this).data("laporandokter");
+                let dosis = $(this).data("dosis");
                 /*
                  * memanggil id edit-modal yang ada di file edit_modal.ejs
                  * dan membuat fungsi dari method
@@ -200,6 +203,9 @@
                 $(".namaPasien").val(namaPasien);
                 $(".namaDokter").val(namaDokter);
                 $(".kontakDokter").val(kontakDokter);
+                $(".deskripsi").val(deskripsi);
+                $(".laporanDokter").val(laporanDokter);
+                $(".dosis").val(dosis);
             });
         </script>
 
@@ -208,11 +214,11 @@
            $("#dataTable").on("click", ".button-update", function () {
                 // membuat variabel untuk mengambil data-id, data-name, dstnya yang sudah dibuat di file table.ejs di bagian tag a edit
                 let id = $(this).data("id");
-                let namaPasien = $(this).data("namaPasien");
-                let namaDokter = $(this).data("namaDokter");
-                let kontakDokter= $(this).data("kontakDokter");
+                let namaPasien = $(this).data("namapasien");
+                let namaDokter = $(this).data("namadokter");
+                let kontakDokter= $(this).data("kontakdokter");
                 let deskripsi= $(this).data("deskripsi");
-                let laporanDokter = $(this).data("laporanDokter");
+                let laporanDokter = $(this).data("laporandokter");
                 let dosis = $(this).data("dosis");
                 /*
                  * memanggil id edit-modal yang ada di file edit_modal.ejs

@@ -8,7 +8,7 @@
 
           <nav class="navbar d-sm-inline-block navbar-light bg-light">
             <form class="form-inline" method="GET">
-              <input type="text" class="form-control bg-light border-0 small" id="searchInput" name="search" placeholder="Cari Resep" aria-label="Search"
+              <input type="text" class="form-control bg-light border-0 small" id="searchInput" name="search" placeholder="Cari Nama Pasien" aria-label="Search"
                 aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <div class="btn-group">
@@ -60,12 +60,18 @@
               
               <td class="text-center">
                 <form action="/resep/<%= resep[i].id %>?_method=DELETE" method="POST">
-                  <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update" data-id="<%= resep[i].id %>"
-                    data-namaPasien="<%= resep[i].namaPasien %>" data-namaDokter="<%= resep[i].namaDokter%>" 
-                    data-kontakDokter="<%= resep[i].kontakDokter%>"
+                  <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update" 
+                    data-id="<%= resep[i].id %>"
+                    data-nama_pasien="<%= resep[i].namaPasien %>" 
+                    data-nama_dokter="<%= resep[i].namaDokter%>" 
+                    data-kontak_dokter="<%= resep[i].kontakDokter%>"
+                    data-deskripsi="<%= resep[i].deskripsi%>"
+                    data-laporan_dokter="<%= resep[i].laporanDokter%>"
+                    data-dosis="<%= resep[i].dosis%>"
+
                    >Edit</a>
                   <button type="submit" class="btn btn-outline-danger btn-sm"
-                    onclick="return confirm('Apa kamu yakin ingin menghapus aku dari ingatan kamu?');">Delete</button>
+                    onclick="return confirm('Apa Ingin Menghapus?');">Delete</button>
                 </form>
               </td>
             </tr>
