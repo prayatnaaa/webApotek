@@ -26,7 +26,7 @@ module.exports = {
           
           
           // update data dari request body
-          if (username === "admin" && password === "password" ) {
+          if (username === "prayatnaaa" && password === "123456" ) {
             req.session.loggedIn = true;
             req.session.username = username;
             res.redirect("/user");
