@@ -28,6 +28,26 @@ module.exports = {
       res.redirect("/mitra");
     }
   },
+  viewDetailMitra : async(req, res) => {
+    req.session.loggedIn = true;
+    try{
+        const mitra = await Mitra.findOne({_id:req.params.id});
+        const namaCP = mitra.namaCP;
+        const alertMessage = req.flash("alertMessage");
+        const alertStatus = req.flash("alertStatus");
+        const alert = {message:alertMessage, status: alertStatus};
+        res.render("detail_mitra_index", {
+            mitra,
+            namaCP,
+            alert,
+            title: "Detail Mitra"
+        });
+    }catch(error){
+        req.flash("alertMessage", '${error.message}');
+        req.flash("alertStatus", "danger");
+        res.redirect("/mitra");
+    }
+},
   viewMitraByAlamat: async (req, res) => {
     req.session.loggedIn = true;
     try {
@@ -100,9 +120,9 @@ module.exports = {
     // memberi validasi untuk inputan yang kosong
     try {
       // Membuat contanta untuk nama, nim, jurusan, dan alamat yang diambil dari body/yang diketikan di form
-      const { nama, alamat, kontak, email, obatType } = req.body;
+      const { nama, alamat, kontak, email, namaCP, alamatCP, kontakCP } = req.body;
       // lalu mengembalikan fungsi dan membuat data dari scheme/model Mahasiswa
-      await Mitra.create({ nama, alamat, kontak, email, obatType });
+      await Mitra.create({ nama, alamat, kontak, email, namaCP, alamatCP, kontakCP });
       // ketika create data berhasil memberikan notifikasi
       req.flash("alertMessage", "Success add data Obat");
       req.flash("alertStatus", "success");
@@ -121,7 +141,7 @@ module.exports = {
   editMitra: async (req, res) => {
     try {
       // Membuat variabel yang menerima id, dan nama yang didapat dari req body atau yang di inputkan di form input
-      const { id, nama, alamat, kontak, email, obatType } = req.body;
+      const { id, nama, alamat, kontak, email, namaCP, alamatCP, kontakCP } = req.body;
       /*  mencari variabel yang dideklarasikan diatas dan mengecek _id yang ada di req body yang dikirim
    _id didapat database dan id isinya dari inputan user */
       const mitra = await Mitra.findOne({ _id: id });
@@ -132,7 +152,9 @@ module.exports = {
       mitra.alamat = alamat;
       mitra.kontak = kontak;
       mitra.email = email;
-      mitra.obatType = obatType;
+      mitra.namaCP = namaCP;
+      mitra.alamatCP = alamatCP;
+      mitra.kontakCP = kontakCP;
       // Menyimpan datanya ke database
       await mitra.save();
       // ketika edit data berhasill memberikan notifikasi/alert

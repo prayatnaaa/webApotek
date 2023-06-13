@@ -189,7 +189,9 @@
                 let alamat = $(this).data("alamat");
                 let kontak = $(this).data("kontak");
                 let email = $(this).data("email");
-                let obatType = $(this).data("obat_type");
+                let namaCP = $(this).data("nama_cp");
+                let alamatCP = $(this).data("alamat_cp");
+                let kontakCP = $(this).data("kontak_cp");
                 /*
                  * memanggil id edit-modal yang ada di file edit_modal.ejs
                  * dan membuat fungsi dari method
@@ -202,7 +204,9 @@
                 $(".alamat").val(alamat);
                 $(".kontak").val(kontak);
                 $(".email").val(email);
-                $(".obatType").val(obatType);
+                $(".namaCP").val(namaCP);
+                $(".alamatCP").val(alamatCP);
+                $(".kontakCP").val(kontakCP);
             });
         </script>
 
@@ -212,7 +216,9 @@
             var alamatLink = document.getElementById('alamatLink');
             var kontakLink = document.getElementById('kontakLink');
             var emailLink = document.getElementById('emailLink');
-            var obatTypeLink = document.getElementById('obatTypeLink');
+            var namaCPLink = document.getElementById('namaCPLink');
+            var alamatCPLink = document.getElementById('alamatCPLink');
+            var kontakCPLink = document.getElementById('kontakCPLink');
 
             namaLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Mencegah aksi default hyperlink
@@ -244,12 +250,32 @@
                     window.location.href = url;
                 }
             });
-            obatTypeLink.addEventListener('click', function (event) {
+            namaCPLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Mencegah aksi default hyperlink
 
                 var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
                 if (searchValue.trim() !== '') { // cek null
-                    var url = "/mitra/obatType/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    var url = "/mitra/namaCP/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    // Redirect ke URL yang ditentukan
+                    window.location.href = url;
+                }
+            });
+            alamatCPLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default hyperlink
+
+                var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
+                if (searchValue.trim() !== '') { // cek null
+                    var url = "/mitra/alamatCP/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
+                    // Redirect ke URL yang ditentukan
+                    window.location.href = url;
+                }
+            });
+            kontakCPLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah aksi default hyperlink
+
+                var searchValue = searchInput.value; // Mendapatkan nilai dari inputan form
+                if (searchValue.trim() !== '') { // cek null
+                    var url = "/mitra/kontakCP/" + encodeURIComponent(searchValue); // Membuat URL dengan nilai search
                     // Redirect ke URL yang ditentukan
                     window.location.href = url;
                 }

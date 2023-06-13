@@ -13,13 +13,21 @@ const mitraScheme = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  obatType: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
   },
+    namaCP: {
+      type: String,
+      required: true
+    },
+    alamatCP: {
+      type: String,
+      required: true
+    },
+    kontakCP: {
+      type: Number,
+      required: true
+    }
 });
 module.exports = mongoose.model("Mitra", mitraScheme);
